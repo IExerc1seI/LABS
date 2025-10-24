@@ -4,7 +4,7 @@ Release:        1%{?dist}
 Summary:        Bash script to count files in /etc excluding directories and links
 
 License:        MIT
-URL:            https://github.com/yourusername/labs
+URL:            https://github.com/IExerc1seI/LABS
 Source0:        count_etc_files.sh
 
 BuildArch:      noarch
@@ -27,5 +27,5 @@ install -m 0755 %{SOURCE0} %{buildroot}/usr/local/bin/count_etc_files.sh
 /usr/local/bin/count_etc_files.sh
 
 %changelog
-* Fri Oct 24 2025 Your Name <you@example.com> 1.0-1
+* Fri Oct 24 2025 Vladislav Poleshchuk <vladislav@example.com> 1.0-1
 - Initial RPM release

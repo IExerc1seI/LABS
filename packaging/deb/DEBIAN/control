@@ -3,5 +3,5 @@ Version: 1.0
 Section: utils
 Priority: optional
 Architecture: all
-Maintainer: Your Name <you@example.com>
+Maintainer: Vladislav Poleshchuk <vladislav@example.com>
 Description: Bash script to count files in /etc excluding directories and links
