@@ -1,0 +1,42 @@
+name: Build RPM and DEB packages
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install build tools
+        run: |
+          sudo apt update
+          sudo apt install -y rpm dpkg-dev fakeroot
+
+      # ---- RPM BUILD ----
+      - name: Build RPM package
+        run: |
+          mkdir -p ~/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
+          cp packaging/rpm/count_etc_files.spec ~/rpmbuild/SPECS/
+          cp count_etc_files.sh ~/rpmbuild/SOURCES/
+          rpmbuild -ba ~/rpmbuild/SPECS/count_etc_files.spec
+
+      # ---- DEB BUILD ----
+      - name: Build DEB package
+        run: |
+          mkdir -p packaging/deb/usr/local/bin
+          cp count_etc_files.sh packaging/deb/usr/local/bin/
+          fakeroot dpkg-deb --build packaging/deb count-etc-files_1.0_all.deb
+
+      # ---- UPLOAD ARTIFACTS ----
+      - name: Upload built packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: packages
+          path: |
+            ~/rpmbuild/RPMS/noarch/*.rpm
+            count-etc-files_1.0_all.deb
