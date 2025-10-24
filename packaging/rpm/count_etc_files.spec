@@ -4,7 +4,7 @@ Release:        1%{?dist}
 Summary:        Bash script to count files in /etc excluding directories and links
 
 License:        MIT
-URL:            https://github.com/${{ github.repository }}
+URL:            https://github.com/yourusername/labs
 Source0:        count_etc_files.sh
 
 BuildArch:      noarch
